@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Java Blueprints: исследуйте Java как граф, преобразуйте код и проверяйте поведение на реальной JVM.">
+  <title>Java Blueprints / Engineering workspace</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Java Blueprints"><span class="brand-icon">B<span>↗</span></span><span>blueprints<span class="brand-sub">JAVA ENGINEERING LAB</span></span></a>
+    <div class="workspace-name"><span class="status-dot"></span> Workspace <span class="slash">/</span> <strong id="projectName">PairAnalyzer</strong><span class="tag">JAVA 21</span></div>
+    <div class="top-actions"><button id="importBtn" class="button subtle">↥ <span>Импорт Java</span></button><button id="exportBtn" class="button subtle">↧ <span>Экспорт</span></button><button id="verifyBtn" class="button primary">▷ <span>Проверить поведение</span></button></div>
+    <input id="fileInput" type="file" accept=".java" multiple hidden>
+  </header>
+  <div id="modeBanner" class="mode-banner" hidden></div>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="section-label">ПРОЕКТ <span id="fileCount">01</span></div>
+      <div id="fileList" class="file-list"></div>
+      <div class="section-label methods-heading">МЕТОДЫ <span id="methodCount">0</span></div>
+      <label class="search-wrap"><span>⌕</span><input id="methodSearch" type="search" placeholder="Найти метод…" aria-label="Поиск методов"></label>
+      <div id="methodList" class="method-list"></div>
+      <div class="sidebar-bottom"><div class="section-label">ПРИМЕРЫ</div><button id="samplePairs" class="sample-button"><span>◈</span><span>Подсчёт пар<small>Оптимизация O(n²) → O(n)</small></span>↗</button><button id="sampleLanguage" class="sample-button"><span>⌘</span><span>Java scope<small>Коллекции, исключения, Stream</small></span>↗</button><a href="guide.html" target="_blank" rel="noopener" class="help-link">◎ Архитектура и ограничения ↗</a><div class="connection"><span id="connectionDot" class="status-dot"></span><span id="connectionText">Подключение к JVM…</span></div></div>
+    </aside>
+    <main class="workspace">
+      <section class="workspace-heading"><div><div class="eyebrow">ИССЛЕДУЙТЕ. УЛУЧШАЙТЕ. ПРОВЕРЯЙТЕ.</div><h1>Код становится понятнее.</h1><p>От Java к визуальной модели и обратно.</p></div><div class="gate-badge" id="gateBadge"><span>◌</span><div>Quality gate<small id="gateText">Ожидает проверки</small></div></div></section>
+      <div class="metrics"><div><span>СТРОК КОДА</span><strong id="linesMetric">—</strong><small>в текущем файле</small></div><div><span>МЕТОДЫ</span><strong id="methodsMetric">—</strong><small>из реального AST</small></div><div><span>СЛОЖНОСТЬ ФРАГМЕНТА</span><strong id="complexityMetric" class="accent">—</strong><small title="Эвристика: каждый цикл считается линейным; вызовы не учитываются">структурная оценка ⓘ</small></div><div><span>ДИАГНОСТИКА</span><strong id="findingsMetric">—</strong><small>проверяемые рекомендации</small></div></div>
+      <section class="graph-panel"><div class="panel-bar"><div class="panel-title"><span class="tiny-square"></span>Визуальная модель <select class="chip" id="methodChip" aria-label="Выбор метода"><option>—</option></select></div><div class="graph-actions"><button class="icon-button" id="zoomOut" aria-label="Уменьшить">−</button><span id="zoomLabel">100%</span><button class="icon-button" id="zoomIn" aria-label="Увеличить">+</button><button class="icon-button" id="fitGraph" aria-label="Сбросить расположение">⤢</button><span class="divider"></span><button id="extractBtn" class="text-button">◇ Декомпозиция</button></div></div>
+        <div id="graphViewport" class="graph-viewport"><div class="graph-caption"><span class="status-dot"></span> AST → структурный граф <span>Выберите узел для правки</span></div><div id="graphCanvas" class="graph-canvas"><svg id="graphEdges" class="graph-edges" aria-hidden="true"></svg><div id="graphNodes"></div></div><div id="graphEmpty" class="empty-state" hidden>В этом файле нет методов с телом.</div></div>
+        <div class="graph-footer"><div><span class="legend-dot variable"></span>Данные <span class="legend-dot condition"></span>Условие <span class="legend-dot loop"></span>Цикл <span class="legend-dot return"></span>Возврат</div><span id="nodeCount">0 узлов</span></div>
+      </section>
+      <section class="editor-panel"><div class="panel-bar"><div class="tabs"><button class="tab active" data-tab="code">⌘ Java <span id="dirtyBadge" class="dirty-dot" hidden></span></button><button class="tab" data-tab="tests">✓ Quality gate <span id="testCount" class="count-badge">0</span></button><button class="tab" data-tab="inputs">≡ Тестовые входы</button></div><div class="editor-actions"><span id="saveStatus">Исходная версия</span><button id="undoBtn" class="text-button" title="Отменить изменение">↶ Отменить</button><button id="analyzeBtn" class="text-button accent">Обновить граф ↗</button></div></div>
+        <div id="codeTab" class="tab-content code-content"><div id="lineNumbers" class="line-numbers" aria-hidden="true"></div><textarea id="sourceEditor" spellcheck="false" aria-label="Исходный код Java" wrap="off"></textarea></div>
+        <div id="testsTab" class="tab-content tests-content" hidden><div id="testResults" class="test-results"><div class="empty-tests">▷<h3>Проверяйте каждое преобразование</h3><p>Обе версии компилируются и запускаются на одинаковых входах.<br>Сравниваем stdout, stderr и код завершения.</p><button class="button primary" id="runFromTests">Запустить проверку</button></div></div></div>
+        <div id="inputsTab" class="tab-content inputs-content" hidden><div><h3>Один блок = один запуск программы</h3><p>Разделяйте входы строкой <code>---</code>. Пустой блок означает пустой stdin. До 30 тестов.</p><textarea id="inputsEditor" spellcheck="false" aria-label="Входы для сравнения"></textarea></div><div class="input-note"><span>01</span><h3>Контракт сравнения</h3><p>Точное совпадение вывода и кода завершения. Таймаут или превышение лимита вывода всегда отклоняет результат.</p><p>Совпадение на конечном наборе входов не доказывает эквивалентность для всех данных.</p><button id="baselineBtn" class="button subtle">Принять текущую версию за эталон</button></div></div>
+      </section>
+      <footer class="workspace-footer"><span>BLUEPRINTS / AXENIX CASE</span><span id="bottomStatus">Source-preserving transformations</span><span>UTF-8 <span class="footer-dot">•</span> Java Compiler API</span></footer>
+    </main>
+    <aside class="inspector"><div class="inspector-title">Инспектор <span>⌘</span></div><div id="inspectorBody"></div></aside>
+  </div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <dialog id="nodeDialog"><form method="dialog"><div class="dialog-heading"><div><span class="eyebrow" id="nodeDialogMeta">ПРАВКА УЗЛА</span><h2>Изменить фрагмент</h2></div><button class="icon-button" value="cancel" aria-label="Закрыть">×</button></div><p>Изменение попадёт в Java-код. После правки граф перестроится; поведение нужно проверить.</p><textarea id="nodeCode" spellcheck="false" aria-label="Код выбранного узла"></textarea><div class="dialog-actions"><button class="button subtle" value="cancel">Отмена</button><button id="applyNodeBtn" class="button primary" type="button">Применить к Java ↗</button></div></form></dialog>
+  <script src="app.js"></script>
+</body></html>

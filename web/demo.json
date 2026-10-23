@@ -1,0 +1,1542 @@
+{
+  "before": {
+    "files": {
+      "PairAnalyzer.java": "import java.nio.charset.StandardCharsets;\nimport java.util.*;\n\n/** Demo: counts ordered equal pairs, including each element paired with itself. */\npublic class PairAnalyzer {\n    public static void main(String[] args) {\n        Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);\n        int n = input.hasNextInt() ? input.nextInt() : 0;\n        if (n < 0 || n > 100000) {\n            System.err.println(\"Некорректный размер\");\n            return;\n        }\n        int[] values = new int[n];\n        for (int i = 0; i < n; i++) {\n            values[i] = input.hasNextInt() ? input.nextInt() : 0;\n        }\n        System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));\n        System.out.println(\"Категория: \" + classify(n));\n    }\n\n    static int countPairs(int[] values) {\n        int matches = 0;\n        for (int a : values) {\n            for (int b : values) {\n                if (a == b) {\n                    matches++;\n                }\n            }\n        }\n        return matches;\n    }\n\n    static String classify(int n) {\n        if (n == 0) {\n            return \"пустой набор\";\n        }\n        if (n < 10) {\n            return \"малый набор\";\n        }\n        return \"большой набор\";\n    }\n}\n"
+    },
+    "model": {
+      "valid": true,
+      "diagnostics": [],
+      "methods": [
+        {
+          "id": "PairAnalyzer#main@179",
+          "name": "main",
+          "owner": "PairAnalyzer",
+          "signature": "void main(String[] args)",
+          "line": 6,
+          "start": 179,
+          "end": 753,
+          "lines": 14,
+          "static": true,
+          "graph": {
+            "entry": "n13",
+            "exit": "n0",
+            "exceptionEdges": "conservative",
+            "nodes": [
+              {
+                "id": "n13",
+                "kind": "entry",
+                "label": "main",
+                "depth": 0,
+                "line": 6,
+                "start": 179,
+                "end": 753,
+                "code": "public static void main(String[] args) {\n        Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);\n        int n = input.hasNextInt() ? input.nextInt() : 0;\n        if (n < 0 || n > 100000) {\n            System.err.println(\"Некорректный размер\");\n            return;\n        }\n        int[] values = new int[n];\n        for (int i = 0; i < n; i++) {\n            values[i] = input.hasNextInt() ? input.nextInt() : 0;\n        }\n        System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));\n        System.out.println(\"Категория: \" + classify(n));\n    }",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n12",
+                "kind": "variable",
+                "label": "Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);",
+                "depth": 0,
+                "line": 7,
+                "start": 228,
+                "end": 291,
+                "code": "Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);",
+                "editStart": 228,
+                "editEnd": 291,
+                "editCode": "Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);"
+              },
+              {
+                "id": "n11",
+                "kind": "variable",
+                "label": "int n = input.hasNextInt() ? input.nextInt() : 0;",
+                "depth": 0,
+                "line": 8,
+                "start": 300,
+                "end": 349,
+                "code": "int n = input.hasNextInt() ? input.nextInt() : 0;",
+                "editStart": 300,
+                "editEnd": 349,
+                "editCode": "int n = input.hasNextInt() ? input.nextInt() : 0;"
+              },
+              {
+                "id": "n8",
+                "kind": "condition",
+                "label": "(n < 0 || n > 100000)",
+                "depth": 0,
+                "line": 9,
+                "start": 358,
+                "end": 469,
+                "code": "if (n < 0 || n > 100000) {\n            System.err.println(\"Некорректный размер\");\n            return;\n        }",
+                "editStart": 361,
+                "editEnd": 382,
+                "editCode": "(n < 0 || n > 100000)"
+              },
+              {
+                "id": "n10",
+                "kind": "operation",
+                "label": "System.err.println(\"Некорректный размер\");",
+                "depth": 1,
+                "line": 10,
+                "start": 397,
+                "end": 439,
+                "code": "System.err.println(\"Некорректный размер\");",
+                "editStart": 397,
+                "editEnd": 439,
+                "editCode": "System.err.println(\"Некорректный размер\");"
+              },
+              {
+                "id": "n9",
+                "kind": "return",
+                "label": "return;",
+                "depth": 1,
+                "line": 11,
+                "start": 452,
+                "end": 459,
+                "code": "return;",
+                "editStart": 452,
+                "editEnd": 459,
+                "editCode": "return;"
+              },
+              {
+                "id": "n0",
+                "kind": "exit",
+                "label": "Завершение",
+                "depth": 0,
+                "line": 0,
+                "start": -1,
+                "end": -1,
+                "code": "",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n7",
+                "kind": "variable",
+                "label": "int[] values = new int[n];",
+                "depth": 0,
+                "line": 13,
+                "start": 478,
+                "end": 504,
+                "code": "int[] values = new int[n];",
+                "editStart": 478,
+                "editEnd": 504,
+                "editCode": "int[] values = new int[n];"
+              },
+              {
+                "id": "n6",
+                "kind": "variable",
+                "label": "int i = 0",
+                "depth": 0,
+                "line": 14,
+                "start": 518,
+                "end": 527,
+                "code": "int i = 0",
+                "editStart": 518,
+                "editEnd": 527,
+                "editCode": "int i = 0"
+              },
+              {
+                "id": "n3",
+                "kind": "loop",
+                "label": "i < n",
+                "depth": 0,
+                "line": 14,
+                "start": 513,
+                "end": 618,
+                "code": "for (int i = 0; i < n; i++) {\n            values[i] = input.hasNextInt() ? input.nextInt() : 0;\n        }",
+                "editStart": 529,
+                "editEnd": 534,
+                "editCode": "i < n"
+              },
+              {
+                "id": "n5",
+                "kind": "operation",
+                "label": "values[i] = input.hasNextInt() ? input.nextInt() : 0;",
+                "depth": 1,
+                "line": 15,
+                "start": 555,
+                "end": 608,
+                "code": "values[i] = input.hasNextInt() ? input.nextInt() : 0;",
+                "editStart": 555,
+                "editEnd": 608,
+                "editCode": "values[i] = input.hasNextInt() ? input.nextInt() : 0;"
+              },
+              {
+                "id": "n4",
+                "kind": "operation",
+                "label": "i++",
+                "depth": 1,
+                "line": 14,
+                "start": 536,
+                "end": 539,
+                "code": "i++",
+                "editStart": 536,
+                "editEnd": 539,
+                "editCode": "i++"
+              },
+              {
+                "id": "n2",
+                "kind": "operation",
+                "label": "System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));",
+                "depth": 0,
+                "line": 17,
+                "start": 627,
+                "end": 690,
+                "code": "System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));",
+                "editStart": 627,
+                "editEnd": 690,
+                "editCode": "System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));"
+              },
+              {
+                "id": "n1",
+                "kind": "operation",
+                "label": "System.out.println(\"Категория: \" + classify(n));",
+                "depth": 0,
+                "line": 18,
+                "start": 699,
+                "end": 747,
+                "code": "System.out.println(\"Категория: \" + classify(n));",
+                "editStart": 699,
+                "editEnd": 747,
+                "editCode": "System.out.println(\"Категория: \" + classify(n));"
+              }
+            ],
+            "edges": [
+              {
+                "label": "далее",
+                "from": "n1",
+                "to": "n0"
+              },
+              {
+                "label": "далее",
+                "from": "n2",
+                "to": "n1"
+              },
+              {
+                "label": "далее",
+                "from": "n4",
+                "to": "n3"
+              },
+              {
+                "label": "далее",
+                "from": "n5",
+                "to": "n4"
+              },
+              {
+                "label": "повтор",
+                "from": "n3",
+                "to": "n5"
+              },
+              {
+                "label": "выход",
+                "from": "n3",
+                "to": "n2"
+              },
+              {
+                "label": "далее",
+                "from": "n6",
+                "to": "n3"
+              },
+              {
+                "label": "далее",
+                "from": "n7",
+                "to": "n6"
+              },
+              {
+                "label": "return",
+                "from": "n9",
+                "to": "n0"
+              },
+              {
+                "label": "далее",
+                "from": "n10",
+                "to": "n9"
+              },
+              {
+                "label": "да",
+                "from": "n8",
+                "to": "n10"
+              },
+              {
+                "label": "нет",
+                "from": "n8",
+                "to": "n7"
+              },
+              {
+                "label": "далее",
+                "from": "n11",
+                "to": "n8"
+              },
+              {
+                "label": "далее",
+                "from": "n12",
+                "to": "n11"
+              },
+              {
+                "label": "вход",
+                "from": "n13",
+                "to": "n12"
+              }
+            ]
+          },
+          "metrics": {
+            "complexity": "O(n)",
+            "cyclomatic": 3,
+            "calls": 9,
+            "confidence": "heuristic",
+            "loopDepth": 1,
+            "assumptions": "Каждый цикл условно линейный; вызовы, фактические границы и размер вывода не учтены. Рекурсия требует отдельного анализа."
+          }
+        },
+        {
+          "id": "PairAnalyzer#countPairs@759",
+          "name": "countPairs",
+          "owner": "PairAnalyzer",
+          "signature": "int countPairs(int[] values)",
+          "line": 21,
+          "start": 759,
+          "end": 1020,
+          "lines": 11,
+          "static": true,
+          "graph": {
+            "entry": "n7",
+            "exit": "n0",
+            "exceptionEdges": "conservative",
+            "nodes": [
+              {
+                "id": "n7",
+                "kind": "entry",
+                "label": "countPairs",
+                "depth": 0,
+                "line": 21,
+                "start": 759,
+                "end": 1020,
+                "code": "static int countPairs(int[] values) {\n        int matches = 0;\n        for (int a : values) {\n            for (int b : values) {\n                if (a == b) {\n                    matches++;\n                }\n            }\n        }\n        return matches;\n    }",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n6",
+                "kind": "variable",
+                "label": "int matches = 0;",
+                "depth": 0,
+                "line": 22,
+                "start": 805,
+                "end": 821,
+                "code": "int matches = 0;",
+                "editStart": 805,
+                "editEnd": 821,
+                "editCode": "int matches = 0;"
+              },
+              {
+                "id": "n2",
+                "kind": "loop",
+                "label": "int a : values",
+                "depth": 0,
+                "line": 23,
+                "start": 830,
+                "end": 990,
+                "code": "for (int a : values) {\n            for (int b : values) {\n                if (a == b) {\n                    matches++;\n                }\n            }\n        }",
+                "editStart": 843,
+                "editEnd": 849,
+                "editCode": "values"
+              },
+              {
+                "id": "n3",
+                "kind": "loop",
+                "label": "int b : values",
+                "depth": 1,
+                "line": 24,
+                "start": 865,
+                "end": 980,
+                "code": "for (int b : values) {\n                if (a == b) {\n                    matches++;\n                }\n            }",
+                "editStart": 878,
+                "editEnd": 884,
+                "editCode": "values"
+              },
+              {
+                "id": "n4",
+                "kind": "condition",
+                "label": "(a == b)",
+                "depth": 2,
+                "line": 25,
+                "start": 904,
+                "end": 966,
+                "code": "if (a == b) {\n                    matches++;\n                }",
+                "editStart": 907,
+                "editEnd": 915,
+                "editCode": "(a == b)"
+              },
+              {
+                "id": "n5",
+                "kind": "operation",
+                "label": "matches++;",
+                "depth": 3,
+                "line": 26,
+                "start": 938,
+                "end": 948,
+                "code": "matches++;",
+                "editStart": 938,
+                "editEnd": 948,
+                "editCode": "matches++;"
+              },
+              {
+                "id": "n1",
+                "kind": "return",
+                "label": "return matches;",
+                "depth": 0,
+                "line": 30,
+                "start": 999,
+                "end": 1014,
+                "code": "return matches;",
+                "editStart": 999,
+                "editEnd": 1014,
+                "editCode": "return matches;"
+              },
+              {
+                "id": "n0",
+                "kind": "exit",
+                "label": "Завершение",
+                "depth": 0,
+                "line": 0,
+                "start": -1,
+                "end": -1,
+                "code": "",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              }
+            ],
+            "edges": [
+              {
+                "label": "return",
+                "from": "n1",
+                "to": "n0"
+              },
+              {
+                "label": "далее",
+                "from": "n5",
+                "to": "n3"
+              },
+              {
+                "label": "да",
+                "from": "n4",
+                "to": "n5"
+              },
+              {
+                "label": "нет",
+                "from": "n4",
+                "to": "n3"
+              },
+              {
+                "label": "элемент",
+                "from": "n3",
+                "to": "n4"
+              },
+              {
+                "label": "конец",
+                "from": "n3",
+                "to": "n2"
+              },
+              {
+                "label": "элемент",
+                "from": "n2",
+                "to": "n3"
+              },
+              {
+                "label": "конец",
+                "from": "n2",
+                "to": "n1"
+              },
+              {
+                "label": "далее",
+                "from": "n6",
+                "to": "n2"
+              },
+              {
+                "label": "вход",
+                "from": "n7",
+                "to": "n6"
+              }
+            ]
+          },
+          "metrics": {
+            "complexity": "O(n^2)",
+            "cyclomatic": 4,
+            "calls": 0,
+            "confidence": "heuristic",
+            "loopDepth": 2,
+            "assumptions": "Каждый цикл условно линейный; вызовы, фактические границы и размер вывода не учтены. Рекурсия требует отдельного анализа."
+          }
+        },
+        {
+          "id": "PairAnalyzer#classify@1026",
+          "name": "classify",
+          "owner": "PairAnalyzer",
+          "signature": "String classify(int n)",
+          "line": 33,
+          "start": 1026,
+          "end": 1228,
+          "lines": 9,
+          "static": true,
+          "graph": {
+            "entry": "n6",
+            "exit": "n0",
+            "exceptionEdges": "conservative",
+            "nodes": [
+              {
+                "id": "n6",
+                "kind": "entry",
+                "label": "classify",
+                "depth": 0,
+                "line": 33,
+                "start": 1026,
+                "end": 1228,
+                "code": "static String classify(int n) {\n        if (n == 0) {\n            return \"пустой набор\";\n        }\n        if (n < 10) {\n            return \"малый набор\";\n        }\n        return \"большой набор\";\n    }",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n4",
+                "kind": "condition",
+                "label": "(n == 0)",
+                "depth": 0,
+                "line": 34,
+                "start": 1066,
+                "end": 1124,
+                "code": "if (n == 0) {\n            return \"пустой набор\";\n        }",
+                "editStart": 1069,
+                "editEnd": 1077,
+                "editCode": "(n == 0)"
+              },
+              {
+                "id": "n5",
+                "kind": "return",
+                "label": "return \"пустой набор\";",
+                "depth": 1,
+                "line": 35,
+                "start": 1092,
+                "end": 1114,
+                "code": "return \"пустой набор\";",
+                "editStart": 1092,
+                "editEnd": 1114,
+                "editCode": "return \"пустой набор\";"
+              },
+              {
+                "id": "n0",
+                "kind": "exit",
+                "label": "Завершение",
+                "depth": 0,
+                "line": 0,
+                "start": -1,
+                "end": -1,
+                "code": "",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n2",
+                "kind": "condition",
+                "label": "(n < 10)",
+                "depth": 0,
+                "line": 37,
+                "start": 1133,
+                "end": 1190,
+                "code": "if (n < 10) {\n            return \"малый набор\";\n        }",
+                "editStart": 1136,
+                "editEnd": 1144,
+                "editCode": "(n < 10)"
+              },
+              {
+                "id": "n3",
+                "kind": "return",
+                "label": "return \"малый набор\";",
+                "depth": 1,
+                "line": 38,
+                "start": 1159,
+                "end": 1180,
+                "code": "return \"малый набор\";",
+                "editStart": 1159,
+                "editEnd": 1180,
+                "editCode": "return \"малый набор\";"
+              },
+              {
+                "id": "n1",
+                "kind": "return",
+                "label": "return \"большой набор\";",
+                "depth": 0,
+                "line": 40,
+                "start": 1199,
+                "end": 1222,
+                "code": "return \"большой набор\";",
+                "editStart": 1199,
+                "editEnd": 1222,
+                "editCode": "return \"большой набор\";"
+              }
+            ],
+            "edges": [
+              {
+                "label": "return",
+                "from": "n1",
+                "to": "n0"
+              },
+              {
+                "label": "return",
+                "from": "n3",
+                "to": "n0"
+              },
+              {
+                "label": "да",
+                "from": "n2",
+                "to": "n3"
+              },
+              {
+                "label": "нет",
+                "from": "n2",
+                "to": "n1"
+              },
+              {
+                "label": "return",
+                "from": "n5",
+                "to": "n0"
+              },
+              {
+                "label": "да",
+                "from": "n4",
+                "to": "n5"
+              },
+              {
+                "label": "нет",
+                "from": "n4",
+                "to": "n2"
+              },
+              {
+                "label": "вход",
+                "from": "n6",
+                "to": "n4"
+              }
+            ]
+          },
+          "metrics": {
+            "complexity": "O(1)",
+            "cyclomatic": 3,
+            "calls": 0,
+            "confidence": "heuristic",
+            "loopDepth": 0,
+            "assumptions": "Каждый цикл условно линейный; вызовы, фактические границы и размер вывода не учтены. Рекурсия требует отдельного анализа."
+          }
+        }
+      ],
+      "classes": [
+        {
+          "kind": "CLASS",
+          "name": "PairAnalyzer",
+          "line": 5
+        }
+      ],
+      "package": "",
+      "findings": [
+        {
+          "end": 1020,
+          "title": "Вложенные циклы: O(n^2)",
+          "rule": "NESTED_LOOPS",
+          "detail": "Проверьте повторный обход данных. Индекс по ключу может убрать вложенный поиск; семантику и порядок обработки нужно сохранить.",
+          "severity": "warning",
+          "canOptimize": true,
+          "line": 21,
+          "methodId": "PairAnalyzer#countPairs@759",
+          "start": 759
+        }
+      ],
+      "lines": 42,
+      "note": "Граф try/catch показывает консервативные связи исключений. Big O - структурная оценка, стоимость вызовов и границы циклов могут быть неизвестны."
+    }
+  },
+  "after": {
+    "files": {
+      "PairAnalyzer.java": "import java.nio.charset.StandardCharsets;\nimport java.util.*;\n\n/** Demo: counts ordered equal pairs, including each element paired with itself. */\npublic class PairAnalyzer {\n    public static void main(String[] args) {\n        Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);\n        int n = input.hasNextInt() ? input.nextInt() : 0;\n        if (n < 0 || n > 100000) {\n            System.err.println(\"Некорректный размер\");\n            return;\n        }\n        int[] values = new int[n];\n        for (int i = 0; i < n; i++) {\n            values[i] = input.hasNextInt() ? input.nextInt() : 0;\n        }\n        System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));\n        System.out.println(\"Категория: \" + classify(n));\n    }\n\n    static int countPairs(int[] values) {\n        java.util.Map<Integer, Integer> bpFrequency = new java.util.HashMap<>();\n        for (int bpValue : values) {\n            bpFrequency.merge(bpValue, 1, Integer::sum);\n        }\n        int bpMatches = 0;\n        for (int bpCount : bpFrequency.values()) {\n            bpMatches += bpCount * bpCount;\n        }\n        return bpMatches;\n    }\n\n    static String classify(int n) {\n        if (n == 0) {\n            return \"пустой набор\";\n        }\n        if (n < 10) {\n            return \"малый набор\";\n        }\n        return \"большой набор\";\n    }\n}\n"
+    },
+    "model": {
+      "valid": true,
+      "diagnostics": [],
+      "methods": [
+        {
+          "id": "PairAnalyzer#main@179",
+          "name": "main",
+          "owner": "PairAnalyzer",
+          "signature": "void main(String[] args)",
+          "line": 6,
+          "start": 179,
+          "end": 753,
+          "lines": 14,
+          "static": true,
+          "graph": {
+            "entry": "n13",
+            "exit": "n0",
+            "exceptionEdges": "conservative",
+            "nodes": [
+              {
+                "id": "n13",
+                "kind": "entry",
+                "label": "main",
+                "depth": 0,
+                "line": 6,
+                "start": 179,
+                "end": 753,
+                "code": "public static void main(String[] args) {\n        Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);\n        int n = input.hasNextInt() ? input.nextInt() : 0;\n        if (n < 0 || n > 100000) {\n            System.err.println(\"Некорректный размер\");\n            return;\n        }\n        int[] values = new int[n];\n        for (int i = 0; i < n; i++) {\n            values[i] = input.hasNextInt() ? input.nextInt() : 0;\n        }\n        System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));\n        System.out.println(\"Категория: \" + classify(n));\n    }",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n12",
+                "kind": "variable",
+                "label": "Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);",
+                "depth": 0,
+                "line": 7,
+                "start": 228,
+                "end": 291,
+                "code": "Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);",
+                "editStart": 228,
+                "editEnd": 291,
+                "editCode": "Scanner input = new Scanner(System.in, StandardCharsets.UTF_8);"
+              },
+              {
+                "id": "n11",
+                "kind": "variable",
+                "label": "int n = input.hasNextInt() ? input.nextInt() : 0;",
+                "depth": 0,
+                "line": 8,
+                "start": 300,
+                "end": 349,
+                "code": "int n = input.hasNextInt() ? input.nextInt() : 0;",
+                "editStart": 300,
+                "editEnd": 349,
+                "editCode": "int n = input.hasNextInt() ? input.nextInt() : 0;"
+              },
+              {
+                "id": "n8",
+                "kind": "condition",
+                "label": "(n < 0 || n > 100000)",
+                "depth": 0,
+                "line": 9,
+                "start": 358,
+                "end": 469,
+                "code": "if (n < 0 || n > 100000) {\n            System.err.println(\"Некорректный размер\");\n            return;\n        }",
+                "editStart": 361,
+                "editEnd": 382,
+                "editCode": "(n < 0 || n > 100000)"
+              },
+              {
+                "id": "n10",
+                "kind": "operation",
+                "label": "System.err.println(\"Некорректный размер\");",
+                "depth": 1,
+                "line": 10,
+                "start": 397,
+                "end": 439,
+                "code": "System.err.println(\"Некорректный размер\");",
+                "editStart": 397,
+                "editEnd": 439,
+                "editCode": "System.err.println(\"Некорректный размер\");"
+              },
+              {
+                "id": "n9",
+                "kind": "return",
+                "label": "return;",
+                "depth": 1,
+                "line": 11,
+                "start": 452,
+                "end": 459,
+                "code": "return;",
+                "editStart": 452,
+                "editEnd": 459,
+                "editCode": "return;"
+              },
+              {
+                "id": "n0",
+                "kind": "exit",
+                "label": "Завершение",
+                "depth": 0,
+                "line": 0,
+                "start": -1,
+                "end": -1,
+                "code": "",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n7",
+                "kind": "variable",
+                "label": "int[] values = new int[n];",
+                "depth": 0,
+                "line": 13,
+                "start": 478,
+                "end": 504,
+                "code": "int[] values = new int[n];",
+                "editStart": 478,
+                "editEnd": 504,
+                "editCode": "int[] values = new int[n];"
+              },
+              {
+                "id": "n6",
+                "kind": "variable",
+                "label": "int i = 0",
+                "depth": 0,
+                "line": 14,
+                "start": 518,
+                "end": 527,
+                "code": "int i = 0",
+                "editStart": 518,
+                "editEnd": 527,
+                "editCode": "int i = 0"
+              },
+              {
+                "id": "n3",
+                "kind": "loop",
+                "label": "i < n",
+                "depth": 0,
+                "line": 14,
+                "start": 513,
+                "end": 618,
+                "code": "for (int i = 0; i < n; i++) {\n            values[i] = input.hasNextInt() ? input.nextInt() : 0;\n        }",
+                "editStart": 529,
+                "editEnd": 534,
+                "editCode": "i < n"
+              },
+              {
+                "id": "n5",
+                "kind": "operation",
+                "label": "values[i] = input.hasNextInt() ? input.nextInt() : 0;",
+                "depth": 1,
+                "line": 15,
+                "start": 555,
+                "end": 608,
+                "code": "values[i] = input.hasNextInt() ? input.nextInt() : 0;",
+                "editStart": 555,
+                "editEnd": 608,
+                "editCode": "values[i] = input.hasNextInt() ? input.nextInt() : 0;"
+              },
+              {
+                "id": "n4",
+                "kind": "operation",
+                "label": "i++",
+                "depth": 1,
+                "line": 14,
+                "start": 536,
+                "end": 539,
+                "code": "i++",
+                "editStart": 536,
+                "editEnd": 539,
+                "editCode": "i++"
+              },
+              {
+                "id": "n2",
+                "kind": "operation",
+                "label": "System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));",
+                "depth": 0,
+                "line": 17,
+                "start": 627,
+                "end": 690,
+                "code": "System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));",
+                "editStart": 627,
+                "editEnd": 690,
+                "editCode": "System.out.printf(\"Совпадающих пар: %d%n\", countPairs(values));"
+              },
+              {
+                "id": "n1",
+                "kind": "operation",
+                "label": "System.out.println(\"Категория: \" + classify(n));",
+                "depth": 0,
+                "line": 18,
+                "start": 699,
+                "end": 747,
+                "code": "System.out.println(\"Категория: \" + classify(n));",
+                "editStart": 699,
+                "editEnd": 747,
+                "editCode": "System.out.println(\"Категория: \" + classify(n));"
+              }
+            ],
+            "edges": [
+              {
+                "label": "далее",
+                "from": "n1",
+                "to": "n0"
+              },
+              {
+                "label": "далее",
+                "from": "n2",
+                "to": "n1"
+              },
+              {
+                "label": "далее",
+                "from": "n4",
+                "to": "n3"
+              },
+              {
+                "label": "далее",
+                "from": "n5",
+                "to": "n4"
+              },
+              {
+                "label": "повтор",
+                "from": "n3",
+                "to": "n5"
+              },
+              {
+                "label": "выход",
+                "from": "n3",
+                "to": "n2"
+              },
+              {
+                "label": "далее",
+                "from": "n6",
+                "to": "n3"
+              },
+              {
+                "label": "далее",
+                "from": "n7",
+                "to": "n6"
+              },
+              {
+                "label": "return",
+                "from": "n9",
+                "to": "n0"
+              },
+              {
+                "label": "далее",
+                "from": "n10",
+                "to": "n9"
+              },
+              {
+                "label": "да",
+                "from": "n8",
+                "to": "n10"
+              },
+              {
+                "label": "нет",
+                "from": "n8",
+                "to": "n7"
+              },
+              {
+                "label": "далее",
+                "from": "n11",
+                "to": "n8"
+              },
+              {
+                "label": "далее",
+                "from": "n12",
+                "to": "n11"
+              },
+              {
+                "label": "вход",
+                "from": "n13",
+                "to": "n12"
+              }
+            ]
+          },
+          "metrics": {
+            "complexity": "O(n)",
+            "cyclomatic": 3,
+            "calls": 9,
+            "confidence": "heuristic",
+            "loopDepth": 1,
+            "assumptions": "Каждый цикл условно линейный; вызовы, фактические границы и размер вывода не учтены. Рекурсия требует отдельного анализа."
+          }
+        },
+        {
+          "id": "PairAnalyzer#countPairs@759",
+          "name": "countPairs",
+          "owner": "PairAnalyzer",
+          "signature": "int countPairs(int[] values)",
+          "line": 21,
+          "start": 759,
+          "end": 1145,
+          "lines": 11,
+          "static": true,
+          "graph": {
+            "entry": "n8",
+            "exit": "n0",
+            "exceptionEdges": "conservative",
+            "nodes": [
+              {
+                "id": "n8",
+                "kind": "entry",
+                "label": "countPairs",
+                "depth": 0,
+                "line": 21,
+                "start": 759,
+                "end": 1145,
+                "code": "static int countPairs(int[] values) {\n        java.util.Map<Integer, Integer> bpFrequency = new java.util.HashMap<>();\n        for (int bpValue : values) {\n            bpFrequency.merge(bpValue, 1, Integer::sum);\n        }\n        int bpMatches = 0;\n        for (int bpCount : bpFrequency.values()) {\n            bpMatches += bpCount * bpCount;\n        }\n        return bpMatches;\n    }",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n7",
+                "kind": "variable",
+                "label": "java.util.Map<Integer, Integer> bpFrequency = new java.util.HashMap<>();",
+                "depth": 0,
+                "line": 22,
+                "start": 805,
+                "end": 877,
+                "code": "java.util.Map<Integer, Integer> bpFrequency = new java.util.HashMap<>();",
+                "editStart": 805,
+                "editEnd": 877,
+                "editCode": "java.util.Map<Integer, Integer> bpFrequency = new java.util.HashMap<>();"
+              },
+              {
+                "id": "n5",
+                "kind": "loop",
+                "label": "int bpValue : values",
+                "depth": 0,
+                "line": 23,
+                "start": 886,
+                "end": 981,
+                "code": "for (int bpValue : values) {\n            bpFrequency.merge(bpValue, 1, Integer::sum);\n        }",
+                "editStart": 905,
+                "editEnd": 911,
+                "editCode": "values"
+              },
+              {
+                "id": "n6",
+                "kind": "operation",
+                "label": "bpFrequency.merge(bpValue, 1, Integer::sum);",
+                "depth": 1,
+                "line": 24,
+                "start": 927,
+                "end": 971,
+                "code": "bpFrequency.merge(bpValue, 1, Integer::sum);",
+                "editStart": 927,
+                "editEnd": 971,
+                "editCode": "bpFrequency.merge(bpValue, 1, Integer::sum);"
+              },
+              {
+                "id": "n4",
+                "kind": "variable",
+                "label": "int bpMatches = 0;",
+                "depth": 0,
+                "line": 26,
+                "start": 990,
+                "end": 1008,
+                "code": "int bpMatches = 0;",
+                "editStart": 990,
+                "editEnd": 1008,
+                "editCode": "int bpMatches = 0;"
+              },
+              {
+                "id": "n2",
+                "kind": "loop",
+                "label": "int bpCount : bpFrequency.values()",
+                "depth": 0,
+                "line": 27,
+                "start": 1017,
+                "end": 1113,
+                "code": "for (int bpCount : bpFrequency.values()) {\n            bpMatches += bpCount * bpCount;\n        }",
+                "editStart": 1036,
+                "editEnd": 1056,
+                "editCode": "bpFrequency.values()"
+              },
+              {
+                "id": "n3",
+                "kind": "operation",
+                "label": "bpMatches += bpCount * bpCount;",
+                "depth": 1,
+                "line": 28,
+                "start": 1072,
+                "end": 1103,
+                "code": "bpMatches += bpCount * bpCount;",
+                "editStart": 1072,
+                "editEnd": 1103,
+                "editCode": "bpMatches += bpCount * bpCount;"
+              },
+              {
+                "id": "n1",
+                "kind": "return",
+                "label": "return bpMatches;",
+                "depth": 0,
+                "line": 30,
+                "start": 1122,
+                "end": 1139,
+                "code": "return bpMatches;",
+                "editStart": 1122,
+                "editEnd": 1139,
+                "editCode": "return bpMatches;"
+              },
+              {
+                "id": "n0",
+                "kind": "exit",
+                "label": "Завершение",
+                "depth": 0,
+                "line": 0,
+                "start": -1,
+                "end": -1,
+                "code": "",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              }
+            ],
+            "edges": [
+              {
+                "label": "return",
+                "from": "n1",
+                "to": "n0"
+              },
+              {
+                "label": "далее",
+                "from": "n3",
+                "to": "n2"
+              },
+              {
+                "label": "элемент",
+                "from": "n2",
+                "to": "n3"
+              },
+              {
+                "label": "конец",
+                "from": "n2",
+                "to": "n1"
+              },
+              {
+                "label": "далее",
+                "from": "n4",
+                "to": "n2"
+              },
+              {
+                "label": "далее",
+                "from": "n6",
+                "to": "n5"
+              },
+              {
+                "label": "элемент",
+                "from": "n5",
+                "to": "n6"
+              },
+              {
+                "label": "конец",
+                "from": "n5",
+                "to": "n4"
+              },
+              {
+                "label": "далее",
+                "from": "n7",
+                "to": "n5"
+              },
+              {
+                "label": "вход",
+                "from": "n8",
+                "to": "n7"
+              }
+            ]
+          },
+          "metrics": {
+            "complexity": "O(n)",
+            "cyclomatic": 3,
+            "calls": 1,
+            "confidence": "heuristic",
+            "loopDepth": 1,
+            "assumptions": "Каждый цикл условно линейный; вызовы, фактические границы и размер вывода не учтены. Рекурсия требует отдельного анализа."
+          }
+        },
+        {
+          "id": "PairAnalyzer#classify@1151",
+          "name": "classify",
+          "owner": "PairAnalyzer",
+          "signature": "String classify(int n)",
+          "line": 33,
+          "start": 1151,
+          "end": 1353,
+          "lines": 9,
+          "static": true,
+          "graph": {
+            "entry": "n6",
+            "exit": "n0",
+            "exceptionEdges": "conservative",
+            "nodes": [
+              {
+                "id": "n6",
+                "kind": "entry",
+                "label": "classify",
+                "depth": 0,
+                "line": 33,
+                "start": 1151,
+                "end": 1353,
+                "code": "static String classify(int n) {\n        if (n == 0) {\n            return \"пустой набор\";\n        }\n        if (n < 10) {\n            return \"малый набор\";\n        }\n        return \"большой набор\";\n    }",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n4",
+                "kind": "condition",
+                "label": "(n == 0)",
+                "depth": 0,
+                "line": 34,
+                "start": 1191,
+                "end": 1249,
+                "code": "if (n == 0) {\n            return \"пустой набор\";\n        }",
+                "editStart": 1194,
+                "editEnd": 1202,
+                "editCode": "(n == 0)"
+              },
+              {
+                "id": "n5",
+                "kind": "return",
+                "label": "return \"пустой набор\";",
+                "depth": 1,
+                "line": 35,
+                "start": 1217,
+                "end": 1239,
+                "code": "return \"пустой набор\";",
+                "editStart": 1217,
+                "editEnd": 1239,
+                "editCode": "return \"пустой набор\";"
+              },
+              {
+                "id": "n0",
+                "kind": "exit",
+                "label": "Завершение",
+                "depth": 0,
+                "line": 0,
+                "start": -1,
+                "end": -1,
+                "code": "",
+                "editStart": -1,
+                "editEnd": -1,
+                "editCode": ""
+              },
+              {
+                "id": "n2",
+                "kind": "condition",
+                "label": "(n < 10)",
+                "depth": 0,
+                "line": 37,
+                "start": 1258,
+                "end": 1315,
+                "code": "if (n < 10) {\n            return \"малый набор\";\n        }",
+                "editStart": 1261,
+                "editEnd": 1269,
+                "editCode": "(n < 10)"
+              },
+              {
+                "id": "n3",
+                "kind": "return",
+                "label": "return \"малый набор\";",
+                "depth": 1,
+                "line": 38,
+                "start": 1284,
+                "end": 1305,
+                "code": "return \"малый набор\";",
+                "editStart": 1284,
+                "editEnd": 1305,
+                "editCode": "return \"малый набор\";"
+              },
+              {
+                "id": "n1",
+                "kind": "return",
+                "label": "return \"большой набор\";",
+                "depth": 0,
+                "line": 40,
+                "start": 1324,
+                "end": 1347,
+                "code": "return \"большой набор\";",
+                "editStart": 1324,
+                "editEnd": 1347,
+                "editCode": "return \"большой набор\";"
+              }
+            ],
+            "edges": [
+              {
+                "label": "return",
+                "from": "n1",
+                "to": "n0"
+              },
+              {
+                "label": "return",
+                "from": "n3",
+                "to": "n0"
+              },
+              {
+                "label": "да",
+                "from": "n2",
+                "to": "n3"
+              },
+              {
+                "label": "нет",
+                "from": "n2",
+                "to": "n1"
+              },
+              {
+                "label": "return",
+                "from": "n5",
+                "to": "n0"
+              },
+              {
+                "label": "да",
+                "from": "n4",
+                "to": "n5"
+              },
+              {
+                "label": "нет",
+                "from": "n4",
+                "to": "n2"
+              },
+              {
+                "label": "вход",
+                "from": "n6",
+                "to": "n4"
+              }
+            ]
+          },
+          "metrics": {
+            "complexity": "O(1)",
+            "cyclomatic": 3,
+            "calls": 0,
+            "confidence": "heuristic",
+            "loopDepth": 0,
+            "assumptions": "Каждый цикл условно линейный; вызовы, фактические границы и размер вывода не учтены. Рекурсия требует отдельного анализа."
+          }
+        }
+      ],
+      "classes": [
+        {
+          "kind": "CLASS",
+          "name": "PairAnalyzer",
+          "line": 5
+        }
+      ],
+      "package": "",
+      "findings": [],
+      "lines": 42,
+      "note": "Граф try/catch показывает консервативные связи исключений. Big O - структурная оценка, стоимость вызовов и границы циклов могут быть неизвестны."
+    }
+  },
+  "report": {
+    "baselineBuild": {
+      "success": true,
+      "diagnostics": "",
+      "stdout": "",
+      "timeMs": 709
+    },
+    "candidateBuild": {
+      "success": true,
+      "diagnostics": "",
+      "stdout": "",
+      "timeMs": 733
+    },
+    "passed": true,
+    "tests": [
+      {
+        "baseline": {
+          "stderr": "",
+          "stdoutSha256": "7f321c1e006d28eae0a45e311c114a56f43bd499f521a2c15c82dc8ebdc60319",
+          "timeMs": 128,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 0\r\nКатегория: пустой набор\r\n",
+          "exitCode": 0
+        },
+        "candidate": {
+          "stderr": "",
+          "stdoutSha256": "7f321c1e006d28eae0a45e311c114a56f43bd499f521a2c15c82dc8ebdc60319",
+          "timeMs": 147,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 0\r\nКатегория: пустой набор\r\n",
+          "exitCode": 0
+        },
+        "passed": true,
+        "name": "Вход 1",
+        "input": "0\n"
+      },
+      {
+        "baseline": {
+          "stderr": "",
+          "stdoutSha256": "40f85e0f311f2b5391860f0240371ed135b0bc2a7ec6b693337bef8b449cac98",
+          "timeMs": 140,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 1\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "candidate": {
+          "stderr": "",
+          "stdoutSha256": "40f85e0f311f2b5391860f0240371ed135b0bc2a7ec6b693337bef8b449cac98",
+          "timeMs": 140,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 1\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "passed": true,
+        "name": "Вход 2",
+        "input": "1\n7\n"
+      },
+      {
+        "baseline": {
+          "stderr": "",
+          "stdoutSha256": "1682ee9dde12e30e7dc198c86d4318e9b4b470bb6ff3755f6db82191d2b025d4",
+          "timeMs": 138,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 13\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "candidate": {
+          "stderr": "",
+          "stdoutSha256": "1682ee9dde12e30e7dc198c86d4318e9b4b470bb6ff3755f6db82191d2b025d4",
+          "timeMs": 140,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 13\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "passed": true,
+        "name": "Вход 3",
+        "input": "5\n1 2 1 2 1\n"
+      },
+      {
+        "baseline": {
+          "stderr": "",
+          "stdoutSha256": "fc4360907c22f6b918f8f411fd85b46cece0df569d9e6db57633c8bf10091f71",
+          "timeMs": 141,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 10\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "candidate": {
+          "stderr": "",
+          "stdoutSha256": "fc4360907c22f6b918f8f411fd85b46cece0df569d9e6db57633c8bf10091f71",
+          "timeMs": 139,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 10\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "passed": true,
+        "name": "Вход 4",
+        "input": "6\n-3 0 -3 2147483647 -2147483648 0\n"
+      },
+      {
+        "baseline": {
+          "stderr": "Некорректный размер\r\n",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeMs": 118,
+          "timedOut": false,
+          "stderrSha256": "e1f35f8db7060131f81519c538e294190220b60b6f8f2010d30c22847d69a9ff",
+          "outputLimit": false,
+          "stdout": "",
+          "exitCode": 0
+        },
+        "candidate": {
+          "stderr": "Некорректный размер\r\n",
+          "stdoutSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "timeMs": 130,
+          "timedOut": false,
+          "stderrSha256": "e1f35f8db7060131f81519c538e294190220b60b6f8f2010d30c22847d69a9ff",
+          "outputLimit": false,
+          "stdout": "",
+          "exitCode": 0
+        },
+        "passed": true,
+        "name": "Вход 5",
+        "input": "-1\n"
+      },
+      {
+        "baseline": {
+          "stderr": "",
+          "stdoutSha256": "19fba93ce6bb64e68197fd24e546bc9d27c0c48e97354f019c0401aacd2d51b8",
+          "timeMs": 139,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 64\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "candidate": {
+          "stderr": "",
+          "stdoutSha256": "19fba93ce6bb64e68197fd24e546bc9d27c0c48e97354f019c0401aacd2d51b8",
+          "timeMs": 140,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 64\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "passed": true,
+        "name": "Вход 6",
+        "input": "8\n4 4 4 4 4 4 4 4\n"
+      },
+      {
+        "baseline": {
+          "stderr": "",
+          "stdoutSha256": "a66ab6e923c04683977f59a6f89e2cfb7cae28e9cf076f16109f2827c0a28249",
+          "timeMs": 139,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 6\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "candidate": {
+          "stderr": "",
+          "stdoutSha256": "a66ab6e923c04683977f59a6f89e2cfb7cae28e9cf076f16109f2827c0a28249",
+          "timeMs": 118,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 6\r\nКатегория: малый набор\r\n",
+          "exitCode": 0
+        },
+        "passed": true,
+        "name": "Вход 7",
+        "input": "4\n1 2\n"
+      },
+      {
+        "baseline": {
+          "stderr": "",
+          "stdoutSha256": "e493b79524aa0136c2f70e213814a9ee398a3f35619fde988a9994f835ef3c5d",
+          "timeMs": 130,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 10\r\nКатегория: большой набор\r\n",
+          "exitCode": 0
+        },
+        "candidate": {
+          "stderr": "",
+          "stdoutSha256": "e493b79524aa0136c2f70e213814a9ee398a3f35619fde988a9994f835ef3c5d",
+          "timeMs": 140,
+          "timedOut": false,
+          "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "outputLimit": false,
+          "stdout": "Совпадающих пар: 10\r\nКатегория: большой набор\r\n",
+          "exitCode": 0
+        },
+        "passed": true,
+        "name": "Вход 8",
+        "input": "10\n0 1 2 3 4 5 6 7 8 9\n"
+      }
+    ],
+    "runner": "local",
+    "contract": "Exact UTF-8 stdout + stderr + exitCode. Timeout/output overflow always fail. Finite tests are evidence, not a proof for all inputs."
+  }
+}
