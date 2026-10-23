@@ -16,7 +16,7 @@
 | docs/DEMO.md | Живая защита и ответы на вопросы |
 | output/pdf/Java-Blueprints-solution.pdf | Визуальный материал для защиты |
 
-Демо: https://java-blueprints-lab.husainov-565.chatgpt.site. Аудитория существующего Site сохранена; доступ внешнему жюри проверьте самостоятельно, либо показывайте localhost.
+Адрес демо: https://java-blueprints-lab.husainov-565.chatgpt.site. Обновление до Studio 2 ожидает разрешения владельца на публикацию; по адресу пока предыдущая версия. Полная Studio 2 находится в архиве. Аудитория Site не изменялась; для защиты используйте локальный запуск.
 
 Архив: `python tests/package_solution.py`. Записи: живой trusted-local сервер + `python tests/prepare_studio_demo.py`. PDF: ReportLab и Windows Segoe UI/Consolas (зависимости авторинга, не приложения).
 
