@@ -45,6 +45,7 @@ public final class BlueprintServer {
                       Runner.MODE));
               return;
             }
+            if (StudioApi.read(x)) return;
             if (!x.getRequestMethod().equals("POST")) {
               reply(x, 405, Map.of("error", "POST required"));
               return;
@@ -103,8 +104,11 @@ public final class BlueprintServer {
                         inputs.stream().map(String::valueOf).toList());
               }
               default -> {
-                reply(x, 404, Map.of("error", "Unknown API route"));
-                return;
+                if (StudioApi.supports(route)) result = StudioApi.post(route, r);
+                else {
+                  reply(x, 404, Map.of("error", "Unknown API route"));
+                  return;
+                }
               }
             }
             reply(x, 200, result);
@@ -143,7 +147,7 @@ public final class BlueprintServer {
                     ? "text/html"
                     : ext.endsWith(".css")
                         ? "text/css"
-                        : ext.endsWith(".js")
+                        : ext.endsWith(".js") || ext.endsWith(".mjs")
                             ? "text/javascript"
                             : ext.endsWith(".json")
                                 ? "application/json"
@@ -161,7 +165,13 @@ public final class BlueprintServer {
         });
     server.start();
     System.out.println("Java Blueprints: http://localhost:" + port + " | runner=" + Runner.MODE);
-    Runtime.getRuntime().addShutdownHook(new Thread(() -> server.stop(0)));
+    Runtime.getRuntime()
+        .addShutdownHook(
+            new Thread(
+                () -> {
+                  StudioApi.JOBS.close();
+                  server.stop(0);
+                }));
   }
 
   static void headers(HttpExchange x) {

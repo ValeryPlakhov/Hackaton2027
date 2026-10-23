@@ -59,7 +59,7 @@ public final class Analyzer {
     public Void visitMethodInvocation(MethodInvocationTree t, Integer d) {
       calls++;
       String s = t.getMethodSelect().toString();
-      if (s.equals(method) || s.endsWith("." + method)) recursive = true;
+      if (s.equals(method) || s.equals("this." + method)) recursive = true;
       return super.visitMethodInvocation(t, d);
     }
 

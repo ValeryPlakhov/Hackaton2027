@@ -90,9 +90,14 @@ public final class Json {
       if (start == i) throw new IllegalArgumentException("Invalid JSON at " + i);
       String n = s.substring(start, i);
       try {
-        return n.contains(".") || n.contains("e") || n.contains("E")
-            ? Double.valueOf(n)
-            : Long.valueOf(n);
+        if (!n.matches("-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?"))
+          throw new NumberFormatException();
+        if (n.contains(".") || n.contains("e") || n.contains("E")) {
+          double value = Double.parseDouble(n);
+          if (!Double.isFinite(value)) throw new NumberFormatException();
+          return value;
+        }
+        return Long.valueOf(n);
       } catch (NumberFormatException e) {
         throw new IllegalArgumentException("Invalid number");
       }

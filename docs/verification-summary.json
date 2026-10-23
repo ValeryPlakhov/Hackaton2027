@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "tests": 166,
+  "unit": {
+    "tests": 108,
+    "pass": 108,
+    "fail": 0,
+    "passed": true
+  },
+  "api": {
+    "tests": 22,
+    "failures": 0,
+    "errors": 0,
+    "passed": true
+  },
+  "studioApi": {
+    "tests": 36,
+    "failures": 0,
+    "errors": 0,
+    "passed": true
+  },
+  "durationSeconds": 61.12,
+  "environment": {
+    "python": "3.12.14",
+    "platform": "win32",
+    "runner": "trusted-local",
+    "dockerTested": false
+  }
+}

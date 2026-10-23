@@ -260,7 +260,21 @@ public final class Runner {
                   } catch (IOException ignored) {
                   }
                 });
-    boolean done = p.waitFor(timeout, TimeUnit.MILLISECONDS);
+    boolean done;
+    try {
+      done = p.waitFor(timeout, TimeUnit.MILLISECONDS);
+    } catch (InterruptedException interrupted) {
+      p.descendants().forEach(ProcessHandle::destroyForcibly);
+      p.destroyForcibly();
+      a.interrupt();
+      b.interrupt();
+      writer.interrupt();
+      try {
+        p.waitFor(1, TimeUnit.SECONDS);
+      } catch (InterruptedException ignored) {
+      }
+      throw interrupted;
+    }
     if (!done) {
       p.descendants().forEach(ProcessHandle::destroyForcibly);
       p.destroyForcibly();

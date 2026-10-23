@@ -25,12 +25,16 @@
 | Unchecked исключения | JVM поведение; неверные исходники отклоняются | Система не перехватывает пользовательские исключения в серверной JVM |
 | record, enum, generics, lambda, Stream | Score, Mode, first<T>, scores | Бонусный scope компилируется и сохраняется |
 | Дефекты и Big O | Диагноз с line/span, переход к графу | Правила эвристические, без ложного обещания полного статанализа |
-| Оптимизация | Чистый pair counter → histogram | Узкий AST-предикат, случайные входы, негативный тест с побочным эффектом |
+| Оптимизация | Histogram, StringBuilder, int folding, constant branch, guard clause | Узкие AST-предикаты, source hash, overlap/stale validation, затем gate |
 | Декомпозиция | Static method → helper-файл + delegate | Зависимости проверяются компиляцией; не произвольная нарезка монолита |
 | Сохранение поведения | Реальные раздельные сборки и JVM | stdout + stderr + exitCode, не доказательство для всех входов |
 | Исходный код и инструкция | src/, web/, README, launch scripts | Ноль библиотечных зависимостей, JDK 21 |
 | Веб-демо/сборка | Localhost полная версия, Docker recipe, Sites обзор | Sites без живой JVM, честная метка; Docker не проверен здесь |
-| Автотесты и результаты | tests/, docs/test-summary.json, behavior-report.json | Отчёты создаются реальным прогоном |
+| Автотесты и результаты | tests/, docs/verification-summary.json, studio-reference-results.json | 108 unit + 22 базовых API + 36 Studio API = 166, настоящий javac/JVM |
 | Архитектура, scope, ограничения | Этот файл и ARCHITECTURE.md | Полный дополнительный технический документ отсутствует |
 
-Критерии в переданном PDF обозначены как проект: веса и финальную шкалу организаторы утверждают отдельно. Нельзя обоснованно обещать конкретное число баллов или получение 75000 рублей.
+## Расширение Studio 2
+
+Добавлены whole-project analysis, граф вызовов и SCC, 20 дополнительных диагностик, доминаторы/достижимость/пути, lexical def/use, пять семейств hash-bound rewrite-планов, seeded inputs, mutation testing, ddmin контрпримера, inside-JVM benchmark, отменяемые jobs, SARIF, source-bound evidence manifest, история и восемь views. Big O композиционный (последовательные циклы max, вложенные multiply), с явными допущениями. Расширенный контракт см. ARCHITECTURE.md и TESTING.md.
+
+Критерии в переданном PDF обозначены как проект: веса и финальную шкалу организаторы утверждают отдельно. Гарантии победы или получения призовых из этого не следуют.
