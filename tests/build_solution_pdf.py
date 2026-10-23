@@ -20,24 +20,24 @@ W, H = 1280, 720
 BG, PANEL, BORDER = '#0c1119', '#151c27', '#303b4c'
 TEXT, MUTED, LIME, VIOLET = '#eef2e7', '#a4afc0', '#b6f36d', '#b5a6f5'
 pdf = canvas.Canvas(str(OUT / 'Java-Blueprints-solution.pdf'), pagesize=(W, H))
-pdf.setTitle('Java Blueprints Studio 2 - решение кейса AXENIX')
+pdf.setTitle('Blueprints - визуальный конструктор и расширенная Java Studio')
 pdf.setAuthor('Java Blueprints Studio')
 page = 0
 
-def text(x, y, value, size=18, color=TEXT, font='UI'):
-    pdf.setFillColor(HexColor(color))
+def text(x, y, value, size=18, color=None, font='UI'):
+    pdf.setFillColor(HexColor(color or TEXT))
     pdf.setFont(font, size)
     pdf.drawString(x, H-y, str(value))
 
-def paragraph(x, y, value, width, size=17, color=MUTED, font='UI', leading=None):
+def paragraph(x, y, value, width, size=17, color=None, font='UI', leading=None):
     for row in simpleSplit(str(value), font, size, width):
-        text(x, y, row, size, color, font)
+        text(x, y, row, size, color or MUTED, font)
         y += leading or size * 1.55
     return y
 
-def box(x, y, width, height, fill=PANEL, stroke=BORDER):
-    pdf.setFillColor(HexColor(fill))
-    pdf.setStrokeColor(HexColor(stroke))
+def box(x, y, width, height, fill=None, stroke=None):
+    pdf.setFillColor(HexColor(fill or PANEL))
+    pdf.setStrokeColor(HexColor(stroke or BORDER))
     pdf.roundRect(x, H-y-height, width, height, 12, fill=1, stroke=1)
 
 def start(kicker, title, subtitle=''):
@@ -53,7 +53,7 @@ def start(kicker, title, subtitle=''):
     pdf.setStrokeColor(HexColor(BORDER))
     pdf.line(56, 50, 1224, 50)
     text(56, 696, 'UNDERSTAND / REFACTOR / VERIFY     -     JDK 21 / UTF-8 / REAL JVM', 10, MUTED)
-    text(1152, 696, f'{page:02d} / 12', 10, MUTED)
+    text(1152, 696, f'{page:02d} / 14', 10, MUTED)
 
 def end():
     pdf.showPage()
@@ -69,7 +69,23 @@ def code(x, y, source, size=17):
         text(x, y, row, size, '#c5d8f3', 'Code')
         y += size*1.6
 
-start('01 / THE PRODUCT', 'Java. Видеть. Менять. Проверять.', 'Визуальная Studio для Java-монолита: связанная модель, объяснимый патч и проверяемый результат.')
+engineering_colors = BG, PANEL, BORDER, TEXT, MUTED, LIME, VIOLET
+BG, PANEL, BORDER = '#f7f9f5', '#ffffff', '#dce6d7'
+TEXT, MUTED, LIME, VIOLET = '#263a31', '#75816d', '#27664c', '#658c59'
+start('VISUAL BUILDER / ОСНОВНОЙ СЦЕНАРИЙ', 'Программы из понятных блоков.', 'Человек выражает логику задачи. Java создаётся автоматически, а результат проверяется настоящей JVM.')
+text(58, 294, 'Собрать. Настроить. Попробовать.', 34, LIME, 'Bold')
+paragraph(58, 345, 'Шесть основных действий, обычные поля и ветки «Да / Нет». Код и инженерные метрики открываются отдельно и не нужны для первого запуска.', 1080, 23)
+for x, title, body in [(58, '01 / Выбрать задачу', 'Приветствие, скидка, доставка, список покупок или чистый лист.'), (454, '02 / Собрать схему', 'Блоки, условия и повторы. Плюс добавляет шаг в нужное место.'), (850, '03 / Получить ответ', 'Понятная форма, реальная Java и пошаговое объяснение модели.')]:
+    card(x, 470, title, body, 372, 160)
+end()
+start('VISUAL BUILDER / ИНТЕРФЕЙС', 'Сначала задача. Код - по желанию.', 'Главная страница теперь открывает конструктор. Прежние инструменты анализа остаются в расширенной Studio.')
+image = ImageReader(str(ROOT / 'docs/assets/builder-overview.png'))
+pdf.drawImage(image, 58, 78, width=1164, height=426, preserveAspectRatio=True, anchor='c')
+text(58, 642, 'Типизированная схема -> проверка ссылок и scope -> Main.java -> javac + JVM.', 17, LIME, 'Bold')
+end()
+BG, PANEL, BORDER, TEXT, MUTED, LIME, VIOLET = engineering_colors
+
+start('ENGINEERING / 01', 'Java. Видеть. Менять. Проверять.', 'Расширенная Studio для Java-монолита: связанная модель, объяснимый патч и проверяемый результат.')
 text(58, 297, 'Изменение должно выдержать проверку.', 33, LIME, 'Bold')
 paragraph(58, 346, 'Настоящий javac AST связывает код и граф. Отдельные JVM проверяют обе версии. Лаборатории помогают оценить скорость, силу тестов и причину расхождения.', 1050, 23)
 for x, value, label in [(58, str(audit['product']['nonempty']), 'непустых строк продукта'), (454, str(summary['tests']), 'автоматических тестов / PASS'), (850, '0', 'runtime-библиотек и API-ключей')]:
@@ -143,8 +159,8 @@ paragraph(658, 301, 'Verified manifest выдаётся только для за
 paragraph(658, 478, 'Дополнительно: граф SVG / Mermaid / DOT, диагностика SARIF. SHA-256 идентифицирует содержимое, но не является цифровой подписью.', 535, 19)
 end()
 
-start('10 / VERIFICATION', '166 тестов. Настоящий compiler и JVM.', 'Одна команда python tests/verify.py компилирует, поднимает отдельный сервер, проверяет и останавливает его.')
-for x, count, title, body in [(58, '108', 'UNIT', 'Diff, workspace, граф, lexer/XSS, ZIP/CRC/paths, storage, поиск и inputs.'), (454, '22', 'BASE API', 'Java scope, UTF-16, edits, extraction, raw bytes, timeout/flood, Origin.'), (850, '36', 'STUDIO API', 'Планы, hashes, jobs/cancel, evidence, benchmark, mutations и reducer.')]:
+start('10 / VERIFICATION', f"{summary['tests']} тестов. Настоящий compiler и JVM.", 'Одна команда python tests/verify.py компилирует, поднимает отдельный сервер, проверяет и останавливает его.')
+for x, count, title, body in [(58, str(summary['unit']['tests']), 'UNIT', 'Визуальные блоки, scope, Java generation, trace, diff, lexer/XSS, ZIP и storage.'), (454, '22', 'BASE API', 'Java scope, UTF-16, edits, extraction, raw bytes, timeout/flood, Origin.'), (850, '42', 'STUDIO + BUILDER API', 'Планы, labs, jobs, evidence и реальные запуски программ из блоков.')]:
     box(x, 270, 372, 294)
     text(x+24, 342, count, 50, LIME, 'Bold')
     text(x+24, 390, title, 13, VIOLET, 'Bold')
@@ -170,9 +186,9 @@ box(58, 267, 1164, 107)
 code(82, 311, '.\\start.ps1 -TrustedLocal\nhttp://localhost:8080', 20)
 paragraph(58, 426, '1. Монолит -> canvas -> объяснимый diff -> apply + 8/8 gate.\n2. Benchmark -> mutation score -> намеренная ошибка -> меньший контрпример.\n3. Checkpoint -> extraction -> architecture -> evidence ZIP.', 1120, 21)
 paragraph(58, 567, 'Границы: trusted local не sandbox; граф структурный, не полный exceptional CFG; конечные тесты не доказывают все входы. На Site - помеченные записи; произвольная Java - локально.', 1140, 18)
-text(58, 644, 'java-blueprints-lab.husainov-565.chatgpt.site', 17, LIME, 'Code')
+text(58, 644, 'http://localhost:8080  /  расширенная Studio: /expert.html', 17, LIME, 'Code')
 end()
 
-assert page == 12
+assert page == 14
 pdf.save()
 print(OUT / 'Java-Blueprints-solution.pdf')

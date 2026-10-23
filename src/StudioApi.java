@@ -124,6 +124,12 @@ public final class StudioApi {
     List<String> inputs =
         request.containsKey("inputs") ? strings(request.get("inputs"), 30) : List.of();
     return switch (kind) {
+      case "run" -> {
+        if (files == null) throw new IllegalArgumentException("Нужны файлы программы");
+        String input = Json.str(request, "input", "");
+        if (input.length() > 32768) throw new IllegalArgumentException("Слишком длинные ответы");
+        yield JOBS.submit(kind, context -> VisualExecution.run(files, input, context));
+      }
       case "compare" -> {
         if (original == null || candidate == null)
           throw new IllegalArgumentException("Нужны обе версии проекта");

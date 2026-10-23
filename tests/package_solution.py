@@ -12,7 +12,7 @@ for folder in ['src','web','examples','tests','docs','.github']:
         if not p.is_file() or '__pycache__' in p.parts or p.suffix in ['.zip','.log']:
             continue
         files.append(p)
-for name in ['README.md','.gitignore','start.ps1','start.sh','start-local.cmd','Dockerfile','compose.yaml']:
+for name in ['README.md','README-EXPERT.md','.gitignore','start.ps1','start.sh','start-local.cmd','Dockerfile','compose.yaml']:
     files.append(root/name)
 files.append(output/'pdf/Java-Blueprints-solution.pdf')
 target=output/'Java-Blueprints-complete.zip'

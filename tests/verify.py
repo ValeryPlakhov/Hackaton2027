@@ -66,6 +66,7 @@ def main():
                 raise RuntimeError('Verification server did not become ready')
             run([sys.executable, 'tests/test_api.py'], env=environment, log='integration.log')
             run([sys.executable, 'tests/test_studio_api.py'], env=environment, log='studio-integration.log')
+            run([sys.executable, 'tests/test_builder_api.py'], env=environment, log='builder-integration.log')
         finally:
             server.terminate()
             try:
@@ -76,9 +77,10 @@ def main():
     run([sys.executable, 'tests/source_audit.py'])
     legacy = json.loads((ROOT / 'docs/test-summary.json').read_text())
     studio = json.loads((ROOT / 'docs/studio-test-summary.json').read_text())
-    summary = {'passed': unit['passed'] and legacy['passed'] and studio['passed'],
-               'tests': unit['tests'] + legacy['tests'] + studio['tests'],
-               'unit': unit, 'api': legacy, 'studioApi': studio,
+    builder = json.loads((ROOT / 'docs/builder-test-summary.json').read_text())
+    summary = {'passed': unit['passed'] and legacy['passed'] and studio['passed'] and builder['passed'],
+               'tests': unit['tests'] + legacy['tests'] + studio['tests'] + builder['tests'],
+               'unit': unit, 'api': legacy, 'studioApi': studio, 'builderApi': builder,
                'durationSeconds': round(time.monotonic() - started, 2),
                'environment': {'python': sys.version.split()[0], 'platform': sys.platform,
                                'runner': 'trusted-local', 'dockerTested': False}}

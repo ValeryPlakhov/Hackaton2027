@@ -1,9 +1,9 @@
 {
   "passed": true,
-  "tests": 166,
+  "tests": 205,
   "unit": {
-    "tests": 108,
-    "pass": 108,
+    "tests": 141,
+    "pass": 141,
     "fail": 0,
     "passed": true
   },
@@ -19,7 +19,13 @@
     "errors": 0,
     "passed": true
   },
-  "durationSeconds": 61.12,
+  "builderApi": {
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "passed": true
+  },
+  "durationSeconds": 70.67,
   "environment": {
     "python": "3.12.14",
     "platform": "win32",

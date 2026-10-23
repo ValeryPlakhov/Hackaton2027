@@ -26,6 +26,7 @@ POST /jobs/submit возвращает id; GET /jobs/{id} до completed/failed/
 
 | kind | Дополнительные поля | Пределы |
 |---|---|---|
+| run | files, input | Одна компиляция + один запуск, compile/runtime status и hashes; используется конструктором |
 | compare | original, candidate, inputs | До 30 stdin |
 | benchmark | original, candidate, fileName, methodName, sizes, repetitions | Static int method(int[]), n≤10000, 3–9 samples |
 | mutation | files, fileName, methodId, inputs, maximum | До 8 мутантов / 8 входов |

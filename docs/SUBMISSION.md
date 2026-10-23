@@ -1,5 +1,7 @@
 # Комплект для сдачи
 
+Актуальная главная страница — визуальный конструктор: блоки → обычные поля → автоматически созданная Java → реальный запуск. Инженерная Studio открывается отдельно на expert.html. Пять переносимых визуальных примеров находятся в examples/blueprints. Полный актуальный прогон: 205 тестов; прежние числа ниже относятся к инженерному этапу Studio 2.
+
 `output/Java-Blueprints-complete.zip`: папка java-blueprints с полными src/web, launch scripts, tests, examples, docs, машиночитаемыми результатами, CI recipe и PDF. Без JDK, .git, runtime dependencies, build/dist и recursive ZIP.
 
 | Файл | Назначение |
