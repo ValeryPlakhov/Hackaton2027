@@ -8,3 +8,8 @@ __pycache__/
 .site-workflow/
 output/*.tar.gz
 java-blueprints/
+.runtime/
+build/
+dist/
+tmp/
+__pycache__/
